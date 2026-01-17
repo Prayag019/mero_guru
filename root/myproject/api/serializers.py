@@ -16,5 +16,7 @@ class Qualification_Serializer(serializers.ModelSerializer):
     class Meta:
         model=Qualification
         exclude=['user']
+
+
         		
 
