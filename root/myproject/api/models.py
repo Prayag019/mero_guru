@@ -48,12 +48,12 @@ class Tutuor_Booking_Counter(models.Model):
     teacher=models.ForeignKey(User,on_delete=models.CASCADE)
 
 
-class Vacancy_record(models.model):
+class Vacancy_record(models.Model):
     vacancy=models.OneToOneField(Vacancy,on_delete=models.CASCADE)
     teacher=models.ForeignKey(User,on_delete=models.CASCADE,related_name='teacher_record')
     student=models.ForeignKey(User,on_delete=models.CASCADE,related_name='student_record') 
     is_active=models.BooleanField(default=True)
-    created_at=models.DateTimeField(auto_add_now=True)
+    created_at=models.DateTimeField(auto_now_add=True)
 
 
 
