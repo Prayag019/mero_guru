@@ -56,6 +56,12 @@ class Vacancy_record(models.Model):
     created_at=models.DateTimeField(auto_now_add=True)
 
 
+class Application_Record(models.Model):
+     teacher=models.ForeignKey(User,on_delete=models.CASCADE)
+     vacancy=models.ForeignKey(Vacancy,on_delete=models.CASCADE)
+     created_at=models.DateTimeField(auto_now_add=True)   
+
+
 
 
 
