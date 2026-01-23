@@ -8,7 +8,7 @@ from django.core.validators import MinValueValidator,MaxValueValidator
 
 
 class Profile(models.Model):
-    user=models.OneToOneField(User,on_delete=models.CASCADE)
+    user=models.OneToOneField(User,on_delete=models.CASCADE,related_name='profile')
 
     role=models.CharField(max_length=20,choices=[('teacher','Teacher'),('student','Student')],default='student')
     full_name=models.CharField(max_length=100)
@@ -16,6 +16,7 @@ class Profile(models.Model):
     current_address=models.CharField(max_length=100)
     age=models.IntegerField()
     verified=models.BooleanField(default=False)
+    gender=models.CharField(max_length=50,choices=[('male','Male'),('female',('female'))],default=None,blank=False,null=False)
 
 
 
@@ -49,7 +50,7 @@ class Tutuor_Booking_Counter(models.Model):
 
 
 class Vacancy_record(models.Model):
-    vacancy=models.OneToOneField(Vacancy,on_delete=models.CASCADE)
+    vacancy=models.OneToOneField(Vacancy,on_delete=models.CASCADE,related_name='vacancy_record')
     teacher=models.ForeignKey(User,on_delete=models.CASCADE,related_name='teacher_record')
     student=models.ForeignKey(User,on_delete=models.CASCADE,related_name='student_record') 
     is_active=models.BooleanField(default=True)
@@ -57,7 +58,7 @@ class Vacancy_record(models.Model):
 
 
 class Application_Record(models.Model):
-     teacher=models.ForeignKey(User,on_delete=models.CASCADE)
+     teacher=models.ForeignKey(User,on_delete=models.CASCADE,related_name='application')
      vacancy=models.ForeignKey(Vacancy,on_delete=models.CASCADE)
      created_at=models.DateTimeField(auto_now_add=True)   
 

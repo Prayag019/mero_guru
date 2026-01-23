@@ -83,7 +83,78 @@ class VacancyViewSet(ModelViewSet):
           Application_Record.objects.create(teacher=teacher,vacancy=vacancy)
 
           return Response("Applied successfully")
-          
+
+  
+  @action(detail=True,methods=['post'])
+  def accept(self,request,pk=None):
+    vacancy=self.get_object()
+    teacher = vacancy.application.teacher 
+    student=self.request.user 
+    Vacancy_record.objects.create(vacancy=vacancy,teacher=teacher,student=student)
+    vacancy.is_active=False
+    return Response("You have succesfully accepted the teacher")
+
+
+  @action(detail=True,methods=['post'])
+  
+  def end_vacancy(self,request,pk=None):
+    vacancy=self.get_object()
+
+    if self.request.user.profile.role=='teacher' && self.request.user.profile.verified=='True':
+      if vacancy.vacancy_record.teacher== self.request.user
+        vacancy.delete()
+        return Response('Vacancy ended successfully')
+
+      else:
+         return Response('cannot perform the action')  
+
+
+
+    else:
+        if vacancy.vacancy_record.student==self.request.user:
+          vacancy.delete()
+          return Response('Vacancy ended successfully')
+
+         else:
+         return Response('cannot perform the action')   
+
+
+
+
+
+       
+
+
+
+
+
+
+       
+
+      
+
+       
+
+
+
+
+
+
+
+    
+
+
+
+
+
+      
+
+
+
+
+
+
+
 
 
 
