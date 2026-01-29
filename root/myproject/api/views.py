@@ -100,8 +100,8 @@ class VacancyViewSet(ModelViewSet):
   def end_vacancy(self,request,pk=None):
     vacancy=self.get_object()
 
-    if self.request.user.profile.role=='teacher' && self.request.user.profile.verified=='True':
-      if vacancy.vacancy_record.teacher== self.request.user
+    if self.request.user.profile.role=='teacher' and self.request.user.profile.verified=='True':
+      if vacancy.vacancy_record.teacher== self.request.user:
         vacancy.delete()
         return Response('Vacancy ended successfully')
 
@@ -115,8 +115,14 @@ class VacancyViewSet(ModelViewSet):
           vacancy.delete()
           return Response('Vacancy ended successfully')
 
-         else:
-         return Response('cannot perform the action')   
+        else:
+         return Response('cannot perform the action')  
+
+         
+
+
+
+
 
 
 
